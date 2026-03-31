@@ -8,24 +8,74 @@ current_image_data = None
 # Poprawiony HTML z pełną interpunkcją CSS
 HTML = """
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>ESP8266 Photo Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Panel Sterowania ESP</title>
     <style>
-        body { font-family: Arial; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
-        .box { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h2 { color: #333; }
-        input { margin: 10px; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #121212; 
+            color: white;
+        }
+        .container { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: #1e1e1e; 
+            padding: 30px; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h2 { margin-bottom: 30px; font-size: 28px; }
+        
+        /* Styl dla wyboru pliku - robimy go czytelnym */
+        input[type="file"] { 
+            display: block;
+            width: 100%;
+            margin-bottom: 30px;
+            font-size: 18px;
+            padding: 10px;
+            background: #333;
+            border-radius: 10px;
+            color: #ccc;
+        }
+
+        /* WIELKI PRZYCISK WYSYŁANIA */
+        input[type="submit"] { 
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: white; 
+            border: none; 
+            padding: 25px; 
+            width: 100%; 
+            font-size: 22px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            border-radius: 15px; 
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,180,219,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        input[type="submit"]:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(0,180,219,0.2);
+        }
+
+        .footer { margin-top: 30px; font-size: 14px; color: #666; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Wgraj zdjęcie na ESP8266</h2>
+    <div class="container">
+        <h2>FOTO DO ESP</h2>
         <form method="post" enctype="multipart/form-data" action="/upload">
-            <input type="file" name="image" accept="image/*"><br>
-            <input type="submit" value="Wyślij do ekranu" style="padding:10px 20px; cursor:pointer;">
+            <input type="file" name="image" accept="image/*">
+            <input type="submit" value="WYŚLIJ NA EKRAN">
         </form>
+        <div class="footer">Po kliknięciu odczekaj chwilę na przetworzenie</div>
     </div>
 </body>
 </html>
